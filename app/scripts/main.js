@@ -42,16 +42,23 @@ $('#playText').click(function() {
 
 });
 
+/* soundcloud stuff */
+// http://api.soundcloud.com/tracks.json?client_id=2ffc286ad7480c76b16558e977b7380c&title=alejandro&limit=50
 SC.initialize({
-  client_id: '8302a40012160b3bf574dcfd5d38fcf6'
-});
+    client_id: '2ffc286ad7480c76b16558e977b7380c',
+    redirect_uri: 'http://127.0.0.1:9000/callback.html',
+  });
 
-var track_url = '/tracks/293';
-SC.stream(track_url, {auto_play: true}, function(stream) {
-  console.log('playing stream');
-  /*stream.play();
-  setTimeout(function() {
-    console.log('stopping stream');
-    stream.stop();
-  }, 1000);*/
+$('#track-search').submit(function() {
+  var url = 'http://api.soundcloud.com/tracks.json?client_id=2ffc286ad7480c76b16558e977b7380c&limit=10&title' + $('#track-term').val();
+  $.getJSON(url, function(data) {
+    var items = [];
+    $.each(data, function(key, val) {
+      items.push( "<li id='" + key + "'>" + val + "</li>" );
+    });
+    $( '<ul/>', {
+      "class": "my-new-list",
+      html: items.join('')
+    }).appendTo("#serch-results");
+  });
 });
