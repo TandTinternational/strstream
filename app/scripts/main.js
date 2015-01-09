@@ -1,4 +1,4 @@
-/* global $, SC */
+/* global $, SC, document */
 console.log('\'Allo \'Allo!');
 
 function getSpeachURL(text) {
@@ -36,7 +36,7 @@ function preloadText(text) {
   return audioElem[0];
 }
 
-var preloadedObject = preloadText('BBC - Horror fly that feasts on ant brains');
+// var preloadedObject = preloadText('BBC - Horror fly that feasts on ant brains');
 
 $('#playText').click(function() {
 
@@ -48,6 +48,69 @@ SC.initialize({
     client_id: '2ffc286ad7480c76b16558e977b7380c',
     redirect_uri: 'http://127.0.0.1:9000/callback.html',
   });
+
+// jayvay-1/avicii-stories-albumid
+// tracks/185272177
+// http://soundcloud.com/devolverdigital/sets/hotline-miami-official
+ //SC.oEmbed('http://soundcloud.com/jayvay-1/avicii-stories-albumid', {color: 'ff0066'},  document.getElementById('putTheWidgetHere'));
+
+// really short - /track/170597613
+
+var tracks = [
+  '/tracks/170597613',
+  '/tracks/185272177'
+];
+
+var notifcations = [
+  'BBC - Horror fly that feasts on ant brains',
+  'Hello world'
+];
+
+var shouldPlayNotification = true;
+
+// plays a track
+function playTrack(track) {
+  console.log('starting stream of: ' + track);
+  SC.stream(track, function(sound){
+    console.log('have stream', track);
+    sound.play({onfinish: function() {
+      console.log('end of track: ' + track);
+      if (shouldPlayNotification) {
+        console.log('we should play a notifcation');
+        tts(notifcations.shift(), function() {
+          nextTrack();
+        });
+      } else {
+        console.log('we are NOT playing a notifcation');
+        return nextTrack();
+      }
+    }});
+  });
+}
+
+// pops the next track off the queue and plays it
+function nextTrack() {
+  var track = tracks.shift();
+  if (!track) {
+    console.warn('No more tracks!');
+    return;
+  }
+  playTrack(track);
+}
+
+nextTrack();
+
+/*SC.stream('/tracks/170597613', function(sound){
+  sound.play({onfinish: function() {
+    console.log('end');
+  }});
+});*/
+
+
+   /*SC.get('/resolve/?url=https://soundcloud.com/sfxsource-sound-effects/sfxsourcecom-motor-forklift-truck', {limit: 1}, function(result){
+       console.log(result);
+   });*/
+
 
 $('#track-search').submit(function() {
   var url = 'http://api.soundcloud.com/tracks.json?client_id=2ffc286ad7480c76b16558e977b7380c&limit=10&title' + $('#track-term').val();
