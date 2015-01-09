@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>strstream</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/favicon.ico">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
@@ -23,8 +23,7 @@
     <!--[if lt IE 10]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
-    <div class="container">
+    <div class="container-fluid">
       <div class="header">
         <ul class="nav nav-pills pull-right">
           <li class="active"><a href="#">Home</a></li>
@@ -36,7 +35,6 @@
       </div>
 
       <div class="jumbotron">
-
         <h1>A personalized radio show</h1>
         <p class="lead">Add tracks to your playlist, add sources for syndication and there you go! A customized radio show!</p>
         <p><input id="sourceText" type="text" /></p>
@@ -44,10 +42,10 @@
       </div>
 
       <div class="row">
-        <div class="col-lg-10 col-md-12 col-sm-12">
-          <form role="search">
+        <div class="col-lg-10 col-md-12 col-sm-12" id="serch-results">
+          <form role="search" id="track-search" action="">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for tracks" name="srch-term" id="srch-term">
+              <input type="text" class="form-control" placeholder="Search for tracks" name="track-term" id="track-term" id="srch-term">
               <div class="input-group-btn">
                 <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
               </div>
@@ -55,84 +53,80 @@
           </form>
         </div>
       </div>
-
-    <div class="row">
-      <div class="col-lg-6 col-sm-6 col-xs-6">
-        <h2>Your playlist</h2>
-        <p>Tracks in your current playlist</p>
+      <div class="row">
+        <div class="col-lg-6 col-sm-6 col-xs-6">
+          <h2>Your playlist</h2>
+          <p>Tracks in your current playlist</p>
+        </div>
+        <div class="col-lg-4 col-sm-6 col-xs-6 pull-right">
+          <h2>Your Syndication</h2>
+          <p>Sources being syndicted</p>
+          <ul>
+            <li>Google News</li>
+            <li>Engadget</li>
+            <li>Gmail (new mail snippets)</li>
+          </ul>
+          <h4>Settings</h4>
+          <form>
+            <h5>Syndicate every:</h5>
+            <select>
+              <option> 15 mins</option>
+              <option> 30 mins</option>
+              <option> hourly</option>
+              <option> 2 hours </option>
+            </select>
+            <h5>How to syndicate:</h5>
+            <select>
+              <option> Combine sources</option>
+              <option> Alternate between sources</option>
+            </select>
+            <h5>Syndicate for:</h5>
+            <select>
+              <option> 30 secs</option>
+              <option> 1 min</option>
+              <option> 2 mins</option>
+              <option> 5 mins</option>
+            </select>
+          </form>
+          <h2>Your Playlists</h2>
+          <ul>
+            <li class="active">Default </li>
+          </ul>
+        </div>
       </div>
-      <div class="col-lg-6 col-sm-6 col-xs-6">
-        <h2>Your Syndication</h2>
-        <p>Sources being syndicted</p>
-        <ul>
-          <li>Google News</li>
-          <li>Engadget</li>
-          <li>Gmail (new mail snippets)</li>
-        </ul>
-
-        <h4>Settings</h4>
-        <form>
-        <h5>Syndicate every:</h5>
-        <select>
-          <option> 15 mins</option>
-          <option> 30 mins</option>
-          <option> hourly</option>
-          <option> 2 hours </option>
-        </select>
-
-        <h5>How to syndicate:</h5>
-        <select>
-        <option> Combine sources</option>
-        <option> Alternate between sources</option>
-</select>
-        <h5>Syndicate for:</h5>
-        <select>
-        <option> 30 secs</option>
-        <option> 1 min</option>
-        <option> 2 mins</option>
-        <option> 5 mins</option>
-</select>
-        </form>
-        <h2>Your Playlists</h2>
-        <ul>
-          <li class="active">Default </li>
-        </ul>
+      <div class="footer">
+        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
       </div>
-  </div>
-
-  <div class="footer">
-    <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-  </div>
-</div>
-<!-- build:js(.) scripts/vendor.js -->
-<!-- bower:js -->
-<script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/button.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/carousel.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js"></script>
-<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js"></script>
-<!-- endbower -->
-<!-- endbuild -->
-<!-- Google Analytics: change UA-XXXXX-X to be your site's ID.
-<script>
-(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-e.src='//www.google-analytics.com/analytics.js';
-r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-ga('create','UA-XXXXX-X');ga('send','pageview');
-</script>
--->
-<!-- build:js({app,.tmp}) scripts/main.js -->
-<script src="scripts/main.js"></script>
-<!-- endbuild -->
-</body>
+    </div>
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/button.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/carousel.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID.
+    <script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+    -->
+    <!-- build:js({app,.tmp}) scripts/main.js -->
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+  </body>
 </html>

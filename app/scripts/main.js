@@ -37,3 +37,16 @@ SC.initialize({
     redirect_uri: 'http://127.0.0.1:9000/callback.html',
   });
 
+$('#track-search').submit(function() {
+  var url = 'http://api.soundcloud.com/tracks.json?client_id=2ffc286ad7480c76b16558e977b7380c&limit=10&title' + $('#track-term').val();
+  $.getJSON(url, function(data) {
+    var items = [];
+    $.each(data, function(key, val) {
+      items.push( "<li id='" + key + "'>" + val + "</li>" );
+    });
+    $( '<ul/>', {
+      "class": "my-new-list",
+      html: items.join('')
+    }).appendTo("#serch-results");
+  });
+});
