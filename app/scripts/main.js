@@ -46,7 +46,7 @@ $('#playText').click(function() {
 // http://api.soundcloud.com/tracks.json?client_id=2ffc286ad7480c76b16558e977b7380c&title=alejandro&limit=50
 SC.initialize({
     client_id: '2ffc286ad7480c76b16558e977b7380c',
-    redirect_uri: 'http://127.0.0.1:9000/callback.html',
+    redirect_uri: 'http://127.0.0.1:9000/callback.html'
   });
 
 // jayvay-1/avicii-stories-albumid
@@ -117,7 +117,9 @@ $('#track-search').submit(function() {
   $.getJSON(url, function(data) {
     var items = [];
     $.each(data, function(key, val) {
-      items.push( "<li id='" + key + "'>" + val + "</li>" );
+      var seconds = Math.floor((val.duration/1000)%60);
+      var minutes = Math.floor((val.duration/(1000*60))%60);
+      items.push( "<li id='" + val.permalink_url + "'>" + val.title + " ("+minutes+":"+seconds+")</li>" );
     });
     $( '<ul/>', {
       "class": "my-new-list",
