@@ -50,12 +50,6 @@ SC.initialize({
     redirect_uri: 'http://127.0.0.1:9000/callback.html'
   });
 
-// jayvay-1/avicii-stories-albumid
-// tracks/185272177
-// http://soundcloud.com/devolverdigital/sets/hotline-miami-official
- //SC.oEmbed('http://soundcloud.com/jayvay-1/avicii-stories-albumid', {color: 'ff0066'},  document.getElementById('putTheWidgetHere'));
-
-// really short - /track/170597613
 
 var tracks = [
   '/tracks/170597613',
@@ -117,7 +111,6 @@ $('#track-search').submit(function(e) {
   e.preventDefault();
   var url = 'http://api.soundcloud.com/tracks.json?client_id=2ffc286ad7480c76b16558e977b7380c&limit=10&title' + $('#track-term').val();
   $.getJSON(url, function(data) {
-    console.log(data);
     var items = [];
     $.each(data, function(key, val) {
       var seconds = Math.floor((val.duration/1000)%60);
@@ -133,8 +126,8 @@ $('#track-search').submit(function(e) {
 });
 
 function addTracks(title, url) {
-  $('#currentPlaylist').append("<li id='"+url+"'>" + title + "</li>");
-
+  $('#currentPlaylist').append("<li id='"+url+"'><a onClick=\"playTrack(\'/tracks/"+url+"\')\">" + title + "</li>");
+  tracks.push("/tracks/"+url)
 }
 
 function createPlaylist(name) {
