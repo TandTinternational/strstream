@@ -1,4 +1,4 @@
-/* global $ */
+/* global $, SC */
 console.log('\'Allo \'Allo!');
 
 function getSpeachURL(text) {
@@ -24,10 +24,22 @@ function tts(text, callback) {
   $('body').append(audioElem);
 }
 
+function preloadText(text) {
+  var url = getSpeachURL(text);
+  console.log(url);
+  var audioElem = $('<audio></audio>');
+  audioElem.attr({'src': url, 'preload': 'auto'});
+  audioElem.on('ended', function() {
+    audioElem.remove();
+  });
+  $('body').append(audioElem);
+  return audioElem[0];
+}
+
+var preloadedObject = preloadText('BBC - Horror fly that feasts on ant brains');
+
 $('#playText').click(function() {
-  var textToPlay = $('#sourceText').val();
-  console.log(textToPlay);
-  tts(textToPlay);
+
 });
 
 /* soundcloud stuff */
