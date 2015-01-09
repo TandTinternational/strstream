@@ -99,7 +99,7 @@ function nextTrack() {
   playTrack(track);
 }
 
-nextTrack();
+// nextTrack();
 
 /*SC.stream('/tracks/170597613', function(sound){
   sound.play({onfinish: function() {
@@ -113,15 +113,17 @@ nextTrack();
    });*/
 
 
-$('#track-search').submit(function() {
+$('#track-search').submit(function(e) {
+  e.preventDefault();
   var url = 'http://api.soundcloud.com/tracks.json?client_id=2ffc286ad7480c76b16558e977b7380c&limit=10&title' + $('#track-term').val();
   $.getJSON(url, function(data) {
+    console.log(data);
     var items = [];
     $.each(data, function(key, val) {
       var seconds = Math.floor((val.duration/1000)%60);
       var minutes = Math.floor((val.duration/(1000*60))%60);
       var trackTitle = val.title + ' ('+minutes+':'+seconds+')';
-      items.push( "<li id='" + val.id + "'><a onClick='addTracks(\'"+trackTitle+"\', "+val.id+")'>" + trackTitle + "</a></li>" );
+      items.push("<li id='" + val.id + "'><a onClick=\"addTracks(\'" + trackTitle + "\', "+val.id+")\">" + trackTitle + "</a></li>" );
     });
     $( '<ul/>', {
       "class": "my-new-list",
