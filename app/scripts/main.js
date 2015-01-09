@@ -65,6 +65,7 @@ var shouldPlayNotification = true;
 
 // plays a track
 function playTrack(track) {
+  track = '/tracks/' + track;
   console.log('starting stream of: ' + track);
   SC.stream(track, function(sound){
     console.log('have stream', track);
