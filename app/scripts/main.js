@@ -1,6 +1,7 @@
 /* global $, SC */
 console.log('\'Allo \'Allo!');
 
+
 function getSpeachURL(text) {
   var urlString;
   urlString = 'http://tts-api.com/tts.mp3?q=';
@@ -56,11 +57,21 @@ $('#track-search').submit(function() {
     $.each(data, function(key, val) {
       var seconds = Math.floor((val.duration/1000)%60);
       var minutes = Math.floor((val.duration/(1000*60))%60);
-      items.push( "<li id='" + val.permalink_url + "'>" + val.title + " ("+minutes+":"+seconds+")</li>" );
+      var trackTitle = val.title + ' ('+minutes+':'+seconds+')';
+      items.push( "<li id='" + val.id + "'><a onClick='addTracks(\'"+trackTitle+"\', "+val.id+")'>" + trackTitle + "</a></li>" );
     });
     $( '<ul/>', {
       "class": "my-new-list",
       html: items.join('')
-    }).appendTo("#serch-results");
+    }).appendTo('#search-results');
   });
 });
+
+function addTracks(title, url) {
+  $('#currentPlaylist').append("<li id='"+url+"'>" + title + "</li>");
+
+}
+
+function createPlaylist(name) {
+
+}
